@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.ChooseDestinationController">
+   <children>
+      <Label alignment="CENTER" layoutX="208.0" layoutY="34.0" prefHeight="43.0" prefWidth="184.0" text="Choose Destination">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label contentDisplay="CENTER" layoutX="70.0" layoutY="101.0" prefHeight="26.0" prefWidth="152.0" text="Country">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label contentDisplay="CENTER" layoutX="70.0" layoutY="136.0" prefHeight="26.0" prefWidth="152.0" text="City">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label contentDisplay="CENTER" layoutX="70.0" layoutY="172.0" prefHeight="26.0" prefWidth="152.0" text="Hotel">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label contentDisplay="CENTER" layoutX="68.0" layoutY="206.0" prefHeight="26.0" prefWidth="152.0" text="Number of people">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label contentDisplay="CENTER" layoutX="68.0" layoutY="242.0" prefHeight="26.0" prefWidth="152.0" text="Number of nights">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <TextField layoutX="238.0" layoutY="102.0" />
+      <TextField layoutX="238.0" layoutY="137.0" />
+      <TextField layoutX="238.0" layoutY="173.0" />
+      <TextField layoutX="238.0" layoutY="207.0" />
+      <TextField layoutX="238.0" layoutY="243.0" />
+      <Text layoutX="238.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="148.5078125">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <Button layoutX="419.0" layoutY="324.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="117.0" text="Confirm">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelButton" layoutX="68.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="43.0" prefWidth="117.0" text="Cancel">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
