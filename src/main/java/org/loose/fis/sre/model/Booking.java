@@ -54,8 +54,5 @@ public class Booking{
         return id;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
 }

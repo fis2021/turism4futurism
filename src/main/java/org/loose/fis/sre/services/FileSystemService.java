@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 public class FileSystemService{
     public static String APPLICATION_FOLDER = ".users";
     public static String HOTELS_FOLDER =".hotels";
-    public static String BOOKINGS_FOLDER =".bookings-database";
+    public static String BOOKINGS_FOLDER =".bookings";
     private static final String USER_FOLDER = System.getProperty("user.home");
 
     public static Path getPathToFile(String... path) {

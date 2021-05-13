@@ -11,9 +11,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.dizitart.no2.objects.Cursor;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.openjfx.model.Booking;
-import org.openjfx.services.BookingService;
-import org.openjfx.services.UserService;
+import org.loose.fis.sre.model.Booking;
+import org.loose.fis.sre.services.BookingService;
+import org.loose.fis.sre.services.UserService;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -26,7 +26,7 @@ import java.util.Date;
 
 import static org.dizitart.no2.objects.filters.ObjectFilters.eq;
 
-public class HomeController {
+public class HomeController{
 
     private static String username;
     private Stage anotherStage;
@@ -36,30 +36,27 @@ public class HomeController {
     @FXML
     private Button logoutButton;
     @FXML
-    private Button agencyListButton;
-    @FXML
-    private Button bookListButton;
-    @FXML
-    private Text messageText;
+    private Button cityListButton;
+
 
     @FXML
     public void initialize() {
         findBookings();
         Platform.runLater(()->{
-            if(ok == 1) messageText.setText("Rating became available!");
+            if(ok == 1) messageText.setText("hi there");
         });
     }
 
     @FXML
-    public void handleAgenciesList(){
+    public void handleCityList(){
         try {
-            AgenciesListController.getAllAgencies();
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("travelAgenciesList.fxml"));
+            CityListController.getAllCity();
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("cityList.fxml"));
             Parent root = loader.load();
             anotherStage = (Stage) (bookListButton.getScene().getWindow());
-            AgenciesListController controller = loader.getController();
+            CityListController controller = loader.getController();
             controller.setAnotherStage(anotherStage);
-            Stage stage = (Stage) (agencyListButton.getScene().getWindow());
+            Stage stage = (Stage) (cityListButton.getScene().getWindow());
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -82,7 +79,7 @@ public class HomeController {
     @FXML
     public  void handleHistory() throws Exception{
         try {
-            AgenciesListController.getAllAgencies();
+            CityListController.getAllCity();
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("historyBooking.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) (bookListButton.getScene().getWindow());

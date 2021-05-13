@@ -21,8 +21,8 @@ public class BookingService {
         bookingRepository = database.getRepository(Booking.class);
     }
 
-    public static void addBooking(String id, String clientUsername, String nameOfAgency, String nameOfOffer, String numberOfPersons, String totalPrice, String checkInDate, String checkOutDate) {
-        bookingRepository.insert(new Booking(id,clientUsername,cityName,hotelName,nrPers,totalPrice,checkInDate,checkOutDate));
+    public static void addBooking(String id, String clientUsername, String cityName, String hotelName, String nrPers, String totalPrice, String checkInDate, String checkOutDate) {
+        bookingRepository.insert(new Booking(id,clientUsername,cityName, hotelName,nrPers,totalPrice,checkInDate,checkOutDate));
     }
 
     public static Nitrite getDatabase() {

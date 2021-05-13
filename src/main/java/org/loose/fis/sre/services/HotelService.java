@@ -10,7 +10,7 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToHotel;
 
 
 public class HotelService {
-    private static ObjectRepository<Hotels> offerRepository;
+    private static ObjectRepository<Hotels> hotelRepository;
     private static Nitrite database;
 
     public static void initDatabase() {
@@ -19,15 +19,15 @@ public class HotelService {
                 .filePath(getPathToHotel("hotels.db").toFile())
                 .openOrCreate("test", "test");
 
-        offerRepository = database.getRepository(Hotels.class);
+        hotelRepository = database.getRepository(Hotels.class);
     }
 
-    public static void addOffer(String id, String nameOfAgency, String hotelName, String price) {
-        offerRepository.insert(new Hotels(id, cityName, hotelName, price));
+    public static void addHotel(String id, String cityName, String hotelName, String price) {
+        hotelRepository.insert(new Hotels(id, cityName, hotelName, price));
     }
 
     public static ObjectRepository<Hotels> getHotelsRepository() {
-        return hotelsRepository;
+        return hotelRepository;
     }
 
     public static Nitrite getDatabase() {
@@ -35,6 +35,6 @@ public class HotelService {
     }
 
     public static List<Hotels> getAllHotels() {
-        return hotelsRepository.find().toList();
+        return hotelRepository.find().toList();
     }
 }
