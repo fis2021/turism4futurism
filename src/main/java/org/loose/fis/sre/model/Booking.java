@@ -5,9 +5,10 @@ import org.dizitart.no2.objects.Id;
 public class Booking{
     @Id
     private String id;
-    private String clientUsername, cityName, hotelName, nrPers, totalPrice, checkInDate, checkOutDate;
+    private String clientUsername, cityName, hotelName, checkInDate, checkOutDate;
+    private int totalPrice, nrPers;
 
-    public Booking(String id, String clientUsername, String cityName, String hotelName, String nrPers, String totalPrice, String checkInDate, String checkOutDate) {
+    public Booking(String id, String clientUsername, String cityName, String hotelName, int nrPers, int totalPrice, String checkInDate, String checkOutDate) {
         this.id = id;
         this.clientUsername = clientUsername;
         this.cityName = cityName;
@@ -22,12 +23,12 @@ public class Booking{
 
     }
 
-    public String getNrPers() {
+    public int getNrPers() {
         return nrPers;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public int getTotalPrice() {
+        return totalPrice * nrPers;
     }
 
     public String getCheckInDate() {

@@ -49,7 +49,7 @@ public class CityListController implements Initializable {
 
     public static void getAllCity(){
         REPOSITORY = UserService.getUserRepository();
-        Cursor<User> city = REPOSITORY.find(eq("role","Ciry"),sort("nameOfCity", SortOrder.Ascending));
+        Cursor<User> city = REPOSITORY.find(eq("role","City"),sort("nameOfCity", SortOrder.Ascending));
         listOfCity.clear();
 
     }
