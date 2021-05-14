@@ -5,30 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.loose.fis.sre.services.FileSystemService;
+import org.loose.fis.sre.services.HotelService;
 import org.loose.fis.sre.services.UserService;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class Main extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        initDirectory();
+
+    public void start(Stage stage) throws Exception {
         UserService.initDatabase();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
-        primaryStage.setTitle("Registration Example");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+        HotelService.initDatabase();
+        Parent root=FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-
-    private void initDirectory() {
-        Path applicationHomePath = FileSystemService.APPLICATION_HOME_PATH;
-        if (!Files.exists(applicationHomePath))
-            applicationHomePath.toFile().mkdirs();
-    }
-
 
     public static void main(String[] args) {
         launch(args);
