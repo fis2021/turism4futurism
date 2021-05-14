@@ -45,10 +45,7 @@
    <TextField GridPane.rowIndex="2" />
    <Label prefHeight="18.0" prefWidth="100.0" text="Search by name:" GridPane.rowIndex="1" />
 
-    <stylesheets>
-        <URL value="@style.css" />
-        <URL value="@styleTable.css" />
-    </stylesheets>
+
     <columnConstraints>
         <ColumnConstraints maxWidth="444.8" minWidth="382.8" prefWidth="419.2" />
       <ColumnConstraints maxWidth="94.39999999999998" minWidth="4.0" prefWidth="58.39999999999998" />

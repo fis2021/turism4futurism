@@ -9,8 +9,10 @@ import java.util.List;
 import static org.loose.fis.sre.services.FileSystemService.getPathToHotel;
 
 
+
 public class HotelService {
-    private static ObjectRepository<Hotels> hotelRepository;
+
+    public static ObjectRepository<Hotels> hotelRepository;
     private static Nitrite database;
 
     public static void initDatabase() {
@@ -22,7 +24,7 @@ public class HotelService {
         hotelRepository = database.getRepository(Hotels.class);
     }
 
-    public static void addHotel(String id, String cityName, String hotelName, String price) {
+    public static void addHotel(String id, String cityName, String hotelName, Integer price) {
         hotelRepository.insert(new Hotels(id, cityName, hotelName, price));
     }
 

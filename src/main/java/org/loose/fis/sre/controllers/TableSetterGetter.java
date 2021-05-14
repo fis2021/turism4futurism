@@ -1,30 +1,36 @@
-package org.loose.fis.sre.model;
+package org.loose.fis.sre.controllers;
 
-import org.dizitart.no2.objects.Id;
+import javafx.scene.control.CheckBox;
 
-public class Hotels{
-    @Id
+public class TableSetterGetter {
+
     private String id;
     private String cityName, hotelName;
     private Integer price;
 
-    public Hotels(String id, String cityName, String hotelName, Integer price) {
+    public TableSetterGetter(String id, String cityName, String hotelName, Integer price, CheckBox checkbox) {
         this.id = id;
         this.cityName = cityName;
         this.hotelName = hotelName;
         this.price = price;
+        this.checkbox = checkbox;
     }
 
-    public Hotels(String cityName, String hotelName, Integer price) {
+    public TableSetterGetter(String cityName, String hotelName, Integer price) {
         this.cityName = cityName;
         this.hotelName = hotelName;
         this.price = price;
     }
 
+    CheckBox checkbox;
 
-    public Hotels() {
+    public String getId() {
+        return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCityName() {
         return cityName;
@@ -50,12 +56,22 @@ public class Hotels{
         this.price = price;
     }
 
+    public CheckBox getCheckbox() {
+        return checkbox;
+    }
+
+    public void setCheckbox(CheckBox checkbox) {
+        this.checkbox = checkbox;
+    }
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Hotels hotels = (Hotels) o;
+        TableSetterGetter hotels = (TableSetterGetter) o;
 
         if (!cityName.equals(hotels.cityName)) return false;
         return price<hotels.price;
@@ -78,4 +94,7 @@ public class Hotels{
                 ", ID=" + id +
                 '}';
     }
+
+
+
 }
