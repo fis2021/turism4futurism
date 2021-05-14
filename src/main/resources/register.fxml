@@ -1,45 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RegistrationController">
-    <padding>
-        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-    </padding>
-    <Text id="title-text" text="Travel Agency - Sign up" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-
-    <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-
-    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-
-    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-    </ChoiceBox>
-
-    <Text fx:id="registrationMessage" wrappingWidth="150.00000619888306" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button onAction="#handleRegisterAction" text="Register" />
-    </HBox>
+<GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="241.0" prefWidth="291.0" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.LoginController">
     <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints />
+        <ColumnConstraints halignment="CENTER" maxWidth="175.39999237060547" minWidth="10.0" prefWidth="170.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.39999237060547" minWidth="10.0" prefWidth="175.39999237060547" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.00000762939453" minWidth="10.0" prefWidth="149.00000762939453" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
+        <RowConstraints maxHeight="130.60000762939453" minHeight="1.0" prefHeight="88.19999999999999" valignment="BOTTOM" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="118.60000762939453" minHeight="1.0" prefHeight="55.2" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="118.60000762939453" minHeight="10.0" prefHeight="48.19999999999999" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="118.60000762939453" minHeight="10.0" prefHeight="48.19999999999999" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="118.60000762939453" minHeight="10.0" prefHeight="48.19999999999999" valignment="TOP" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="118.60000762939453" minHeight="10.0" prefHeight="56.20000000000002" valignment="TOP" vgrow="SOMETIMES" />
     </rowConstraints>
+    <children>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="66.99999380111694" GridPane.columnIndex="1">
+            <font>
+                <Font size="27.0" />
+            </font>
+        </Text>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="83.8388671875" GridPane.rowIndex="1">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" GridPane.rowIndex="2">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <TextField fx:id="usernameField" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <PasswordField fx:id="passwordField" prefHeight="26.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#handleLoginAction" prefHeight="28.0" prefWidth="102.0" text="Sign In" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Text fx:id="warningText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="101.00000151991844" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Button fx:id="registerBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleRegisterAction" prefHeight="26.0" prefWidth="104.0" text="Sign Up" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    </children>
 </GridPane>
