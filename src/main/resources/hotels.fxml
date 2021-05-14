@@ -1,74 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="400" prefWidth="600" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HotelPageController">
-    <padding>
-        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-    </padding>
-
-    <HBox alignment="center" prefHeight="0.0" prefWidth="489.0" spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-
-    <TableView fx:id="tableView" styleClass="table" GridPane.rowIndex="10">
-        <columns>
-            <TableColumn prefWidth="93.39998853206635" text="City">
-                <cellValueFactory><PropertyValueFactory property="cityName" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="CategoryColumn" prefWidth="124.80004119873047" text="Hotel">
-                <cellValueFactory><PropertyValueFactory property="hotels" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="99.39996337890625" text="Price/pers">
-                <cellValueFactory><PropertyValueFactory property="price" />
-                </cellValueFactory>
-            </TableColumn>
-         <TableColumn prefWidth="117.4000244140625" text="Check here">
-            <cellValueFactory>
-               <PropertyValueFactory property="price" />
-            </cellValueFactory>
-         </TableColumn>
-        </columns>
-    </TableView>
-
-    <HBox alignment="center" spacing="10" GridPane.rowIndex="11" />
-    <Button layoutX="34.0" layoutY="35.0" onAction="#handleBackButtonAction" prefHeight="26.0" prefWidth="41.0" styleClass="button" text="Back" />
-   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Log out" GridPane.columnIndex="1" />
-   <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-   <Button mnemonicParsing="false" text="Book your choice" GridPane.rowIndex="16" />
-     <Text id="title-text" styleClass="title" text="Available Hotels" wrappingWidth="84.92578125" GridPane.rowIndex="8" />
-   <TextField GridPane.rowIndex="2" />
-   <Label prefHeight="18.0" prefWidth="100.0" text="Search by name:" GridPane.rowIndex="1" />
-
-
-    <columnConstraints>
-        <ColumnConstraints maxWidth="444.8" minWidth="382.8" prefWidth="419.2" />
-      <ColumnConstraints maxWidth="94.39999999999998" minWidth="4.0" prefWidth="58.39999999999998" />
-        <ColumnConstraints maxWidth="28.0" minWidth="0.0" prefWidth="0.0" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-        <RowConstraints maxHeight="10.400000000000006" minHeight="10.0" prefHeight="10.400000000000006" />
-      <RowConstraints />
-        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-        <RowConstraints maxHeight="16.0" minHeight="15.999999999999986" prefHeight="16.0" />
-        <RowConstraints />
-        <RowConstraints maxHeight="164.00000000000003" minHeight="155.00000000000003" prefHeight="164.00000000000003" />
-        <RowConstraints maxHeight="9.0" minHeight="0.0" prefHeight="0.0" />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-    </rowConstraints>
-
-</GridPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.ChooseDestinationController">
+    <children>
+        <Label alignment="CENTER" layoutX="208.0" layoutY="25.0" prefHeight="43.0" prefWidth="184.0" text="Choose Destination">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label contentDisplay="CENTER" layoutX="36.0" layoutY="263.0" prefHeight="26.0" prefWidth="152.0" text="Number of nights">
+            <font>
+                <Font size="17.0" />
+            </font></Label>
+        <TextField fx:id="noOfNights" layoutX="196.0" layoutY="263.0" onInputMethodTextChanged="#handleCalculate" onKeyPressed="#handleCalculate" onKeyReleased="#handleCalculate" onKeyTyped="#handleCalculate" prefHeight="9.0" prefWidth="60.0" />
+        <Text fx:id="totalPriceText" layoutX="185.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="229.5078125">
+            <font>
+                <Font size="14.0" />
+            </font></Text>
+        <Button layoutX="379.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleConfirmation" prefHeight="26.0" prefWidth="96.0" text="Confirm">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Button>
+        <Button fx:id="cancelButton" layoutX="90.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="26.0" prefWidth="92.0" text="Back">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Button>
+        <TableView fx:id="table" layoutX="36.0" layoutY="68.0" onMouseClicked="#clickOnTableRow" prefHeight="175.0" prefWidth="396.0" />
+        <Label contentDisplay="CENTER" layoutX="36.0" layoutY="299.0" prefHeight="26.0" prefWidth="152.0" text="Total price">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+        <TextField fx:id="searchByCity" layoutX="445.0" layoutY="108.0" prefHeight="25.0" prefWidth="108.0" promptText="Search by City" />
+        <Button layoutX="445.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="37.0" prefWidth="108.0" text="Search">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Button layoutX="445.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleRefresh" prefHeight="37.0" prefWidth="124.0" text="Refresh Table">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+    </children>
+</Pane>

@@ -9,34 +9,21 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+public class ClientController {
 
-public class HomeController{
+    @FXML
+    private Button chDestButton;
 
     @FXML
     private Button logoutButton;
 
-    @FXML
-    private Button hotelsButton;
 
-    @FXML
-    private Button historyButton;
 
-    public void handlehotels() throws IOException {
+    public void handleChooseDestination() throws IOException {
         Stage primary = new Stage();
-        Stage stage = (Stage) hotelsButton.getScene().getWindow();
+        Stage stage = (Stage) chDestButton.getScene().getWindow();
         stage.close();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("hotels.fxml"));
-        Scene nextScene = new Scene(root, 600, 400);
-        primary.setScene(nextScene);
-        primary.show();
-    }
-
-
-    public void handleHistory() throws IOException {
-        Stage primary = new Stage();
-        Stage stage = (Stage) historyButton.getScene().getWindow();
-        stage.close();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("history.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("chooseDestination.fxml"));
         Scene nextScene = new Scene(root, 600, 400);
         primary.setScene(nextScene);
         primary.show();
