@@ -2,7 +2,9 @@ package org.loose.fis.sre.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.loose.fis.sre.exceptions.IncorrectPasswordException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
+import org.loose.fis.sre.exceptions.UsernameDoesNotExistsException;
 import org.loose.fis.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -13,15 +15,15 @@ import java.util.Objects;
 
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
-
 public class UserService {
 
     private static ObjectRepository<User> userRepository;
     private static Nitrite database;
 
     public static void initDatabase() {
+        FileSystemService.initDirectory();
         database = Nitrite.builder()
-                .filePath(getPathToFile("users.db").toFile())
+                .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("test", "test");
 
         userRepository = database.getRepository(User.class);
@@ -37,6 +39,10 @@ public class UserService {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
+    }
+
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
     }
 
     public static String encodePassword(String salt, String password) {
@@ -60,13 +66,21 @@ public class UserService {
         return md;
     }
 
+    public static String getRole(String username, String password) throws IncorrectPasswordException, UsernameDoesNotExistsException {
+        for (User user : userRepository.find()) {
+            if (Objects.equals(username, user.getUsername())) {
+                if (Objects.equals(encodePassword(username, password), user.getPassword())) {
+                    return user.getRole();
+                } else {
+                    throw new IncorrectPasswordException(password);
+                }
+            }
+        }
+        throw new UsernameDoesNotExistsException(username);
+    }
+
     public static void close() {
         userRepository.close();
         database.close();
     }
-
-    public static List<User> getAllUsers() {
-        return userRepository.find().toList();
-    }
-
 }
