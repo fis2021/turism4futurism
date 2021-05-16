@@ -21,6 +21,7 @@ public class UserService {
     private static Nitrite database;
 
     public static void initDatabase() {
+        FileSystemService.initDirectory();
         database = Nitrite.builder()
                 .filePath(getPathToFile("registration-example.db").toFile())
                 .openOrCreate("test", "test");
@@ -38,6 +39,10 @@ public class UserService {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
+    }
+
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
     }
 
     public static String encodePassword(String salt, String password) {
@@ -74,13 +79,8 @@ public class UserService {
         throw new UsernameDoesNotExistsException(username);
     }
 
-    public static List<User> getAllUsers() {
-        return userRepository.find().toList();
-    }
-
     public static void close() {
         userRepository.close();
         database.close();
     }
-
 }

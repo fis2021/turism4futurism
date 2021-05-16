@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
+  //  id 'jacoco'
 }
 
 javafx {
@@ -23,6 +24,7 @@ sourceCompatibility = 11
 targetCompatibility = 11
 
 dependencies {
+
     implementation 'org.openjfx:javafx-controls:15.0.1'
     implementation 'org.openjfx:javafx-fxml:15.0.1'
     implementation 'org.dizitart:nitrite:3.4.3'
@@ -40,7 +42,7 @@ dependencies {
 mainClassName = 'org.loose.fis.sre.Main'
 
 test {
-    //finalizedBy jacocoTestReport // report is always generated after tests run
+//    finalizedBy jacocoTestReport
     useJUnitPlatform()
 }
 

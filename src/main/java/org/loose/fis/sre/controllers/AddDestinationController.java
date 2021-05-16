@@ -10,8 +10,13 @@ import javafx.scene.text.Text;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import org.loose.fis.sre.exceptions.DestinationIncompleteException;
+import org.loose.fis.sre.exceptions.InvalidPriceException;
+import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.exceptions.UsernameDoesNotExistsException;
 import org.loose.fis.sre.model.User;
+import org.loose.fis.sre.services.DestinationService;
+import org.loose.fis.sre.services.UserService;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -30,23 +35,46 @@ public class AddDestinationController {
     private Button cancelButton;
 
     @FXML
+    private TextField countryField;
+
+    @FXML
+    private TextField cityField;
+
+    @FXML
+    private TextField hotelField;
+
+    @FXML
+    private TextField priceField;
+
+    @FXML
+    private Text addMessage;
+
+    @FXML
     public void initialize() {
         transportType.getItems().addAll("Bus", "Plane");
     }
 
-    public void handleSave() throws IOException {
-        Stage primary = new Stage();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("addDestination.fxml"));
-        Scene nextScene = new Scene(root, 600, 400);
-        primary.setScene(nextScene);
-        primary.show();
+
+    public void handleSave() throws Exception {
+        try {
+                String pr = priceField.getText();
+                if (!pr.matches("[0-9]+"))
+                {
+                    addMessage.setText(("The price is invalid!"));
+                    return;
+                }
+                DestinationService.addDestination(cityField.getText(), hotelField.getText(), (String) transportType.getValue(), (Double.parseDouble(priceField.getText())));
+                addMessage.setText("Destination added successfully!");
+        } catch (DestinationIncompleteException e) {
+            addMessage.setText(e.getMessage());
+        }
     }
 
 
-    public void handleCancel() throws IOException {
+    public void handleCancelButton() throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         Stage primary = new Stage();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("client.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("admin.fxml"));
         Scene nextScene = new Scene(root, 600, 400);
         primary.setScene(nextScene);
         primary.show();
