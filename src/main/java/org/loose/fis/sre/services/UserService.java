@@ -8,6 +8,7 @@ import org.loose.fis.sre.model.User;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
@@ -38,7 +39,7 @@ public class UserService {
         }
     }
 
-    private static String encodePassword(String salt, String password) {
+    public static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
@@ -62,6 +63,10 @@ public class UserService {
     public static void close() {
         userRepository.close();
         database.close();
+    }
+
+    public static List<User> getAllUsers() {
+        return userRepository.find().toList();
     }
 
 }
