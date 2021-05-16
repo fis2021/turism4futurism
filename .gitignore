@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> creanga
 # IntelliJ IDEA
 *.iml
 .idea/
 
 # Gradle
-.gradle
+.gradle/
 **/build/
 !src/**/build/
 
