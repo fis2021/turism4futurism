@@ -5,7 +5,6 @@ import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.DestinationIncompleteException;
 import org.loose.fis.sre.model.Destination;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +14,11 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 public class DestinationService {
 
     private static ObjectRepository<Destination> destinationRepository;
+    private static Nitrite database;
 
     public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
+
+        database = Nitrite.builder()
                 .filePath(getPathToFile("destination.db").toFile())
                 .openOrCreate("test", "test");
 
@@ -27,6 +28,10 @@ public class DestinationService {
     public static void addDestination(String city, String hotel, String typeOfTransport, double price) throws DestinationIncompleteException {
         if ((city.equals("")) || (hotel.equals("")) || (typeOfTransport.equals(""))) throw new DestinationIncompleteException();
         destinationRepository.insert(new Destination(city, hotel, typeOfTransport, price));
+    }
+
+    public static List<Destination> getAllUsers() {
+        return destinationRepository.find().toList();
     }
 
     public static ArrayList<Destination> getAllDestinations() {
@@ -48,5 +53,10 @@ public class DestinationService {
             if(destination.getCity().equals(city))list.add(destination);
         }
         return list;
+    }
+
+    public static void close() {
+        destinationRepository.close();
+        database.close();
     }
 }

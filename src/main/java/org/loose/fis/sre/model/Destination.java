@@ -1,7 +1,10 @@
 package org.loose.fis.sre.model;
 
+import org.dizitart.no2.objects.Id;
+
 public class Destination {
 
+    @Id
     private String city;
     private String hotel;
     private String typeOfTransport;
