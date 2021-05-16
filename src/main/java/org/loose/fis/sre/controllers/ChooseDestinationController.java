@@ -84,6 +84,7 @@ public class ChooseDestinationController {
         table.setItems(data);
     }
 
+    double price;
     public void clickOnTableRow()
     {
         Destination destination = table.getSelectionModel().getSelectedItem();
@@ -92,7 +93,7 @@ public class ChooseDestinationController {
             totalPriceText.setText("Please choose number of nights");
             return;
         }
-        double price = Double.parseDouble(noOfNights.getText()) * destination.getPricePerson();
+        price = Double.parseDouble(noOfNights.getText()) * destination.getPricePerson();
         totalPriceText.setText(Double.toString(price));
     }
 
@@ -108,6 +109,7 @@ public class ChooseDestinationController {
         Alert confirm = new Alert(Alert.AlertType.INFORMATION);
         confirm.setTitle("Confirmation");
         confirm.setHeaderText("Yor booking was made!");
+        confirm.setContentText("Total price is " + price);
         confirm.show();
     }
 }

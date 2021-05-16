@@ -1,42 +1,62 @@
 package org.loose.fis.sre.controllers;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.loose.fis.sre.model.Destination;
+import org.loose.fis.sre.model.User;
+import org.loose.fis.sre.services.DestinationService;
+import org.loose.fis.sre.services.FileSystemService;
+import org.loose.fis.sre.services.UserService;
+import org.testfx.api.FxRobot;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
 
-import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ClientController {
+@ExtendWith(ApplicationExtension.class)
+class ClientControllerTest {
 
-    @FXML
-    private Button chDestButton;
-
-    @FXML
-    private Button logoutButton;
-
-
-
-    public void handleChooseDestination() throws IOException {
-        Stage primary = new Stage();
-        Stage stage = (Stage) chDestButton.getScene().getWindow();
-        stage.close();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("chooseDestination.fxml"));
-        Scene nextScene = new Scene(root, 600, 400);
-        primary.setScene(nextScene);
-        primary.show();
+    @BeforeEach
+    void setUp() throws Exception {
+        FileSystemService.APPLICATION_FOLDER = ".test-registration-example";
+        FileUtils.cleanDirectory(FileSystemService.getApplicationHomeFolder().toFile());
+        UserService.initDatabase();
+        DestinationService.initDatabase();
     }
 
-    public void handleLogout() throws IOException {
-        Stage primary = new Stage();
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.close();
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
-        Scene nextScene = new Scene(root, 600, 400);
-        primary.setScene(nextScene);
-        primary.show();
+    @AfterEach
+    void tearDown() throws Exception {
+        DestinationService.close();
+        UserService.close();
     }
 
+    @Start
+    void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("client.fxml"));
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setTitle("Client Test");
+        primaryStage.show();
+    }
+
+    @Test
+    @DisplayName("Verify logout button is working properly")
+    void testLogoutButton(FxRobot robot) {
+        robot.clickOn("#logoutButton");
+        robot.clickOn("#loginWindow");
+    }
+
+    @Test
+    @DisplayName("Verify Choose Destination button is working properly")
+    void testChooseDestinationButton(FxRobot robot) {
+        robot.clickOn("#chooseDestinationButton");
+        robot.clickOn("#chooseDestinationWindow");
+    }
 }
